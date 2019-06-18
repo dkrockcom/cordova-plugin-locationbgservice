@@ -2,7 +2,7 @@
 <plugin
     xmlns="http://cordova.apache.org/ns/plugins/1.0"
            id="cordova-plugin-locationbgservice"
-      version="1.0.0">
+      version="1.0.1">
     <name>cordova-plugin-locationbgservice</name>
     <js-module src="www/locationbgservice.js" name="LocationBGService">
         <clobbers target="LocationBGService" />
