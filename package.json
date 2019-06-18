@@ -1,0 +1,36 @@
+{
+    "name": "cordova-plugin-locationbgservice",
+    "description": "Location tracker background service",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dkrockcom/cordova-plugin-locationbgservice"
+    },
+    "bugs": {
+        "url": "http://bugs.dkrock.com"
+    },
+    "cordova": {
+        "id": "cordova-plugin-locationbgservice",
+        "platforms": [
+            "android"
+        ]
+    },
+    "keywords": [
+        "android",
+        "background",
+        "location tracker",
+        "ecosystem:cordova",
+        "ecosystem:phonegap"
+    ],
+    "engines": {
+        "cordova": ">=3.0.0"
+    },
+    "author": "Devesh Kumar",
+    "license": "GNU General Public License v2.0",
+    "scripts": {
+        "test": "jasmine-node --color spec"
+    },
+    "devDependencies": {
+        "jasmine-node": "1.14.5"
+    }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+    xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="cordova-plugin-locationbgservice"
+      version="1.0.0">
+    <name>cordova-plugin-locationbgservice</name>
+    <js-module src="www/locationbgservice.js" name="LocationBGService">
+        <clobbers target="LocationBGService" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LocationBGServicePlugin" >
+                <param name="android-package" value="org.apache.cordova.locationbgservice.LocationBGServicePlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="org.apache.cordova.locationbgservice.LocationBGGoogleService" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.WAKE_LOCK" />
+        </config-file>
+        <source-file src="src/android/LocationBGServicePlugin.java" target-dir="src/org/apache/cordova/locationbgservice" />
+        <source-file src="src/android/LocationBackgroundServiceUtil.java" target-dir="src/org/apache/cordova/locationbgservice" />
+        <source-file src="src/android/LocationBGGoogleService.java" target-dir="src/org/apache/cordova/locationbgservice" />
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:networkSecurityConfig="@xml/network_security_config" />
+        </edit-config>
+        <resource-file src="src/android/network_security_config.xml" target="res/xml/network_security_config.xml" />
+        <framework custom="true" src="src/android/locationbgservice-sdk.gradle" type="gradleReference" />
+    </platform>
+</plugin>
