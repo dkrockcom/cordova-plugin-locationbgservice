@@ -53,7 +53,7 @@ window.LocationBGService.isRunning(function(response){
 ```
 
 **********************
-API can recieved the object like an example
+API can receive the object like an example
 **********************
 ```
 {
