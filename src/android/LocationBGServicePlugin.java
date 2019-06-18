@@ -99,6 +99,8 @@ public class LocationBGServicePlugin extends CordovaPlugin {
         } else if (action.equals("stop")) {
             LocationBackgroundServiceUtil.IsEnabled = false;
             cordova.getActivity().stopService(new Intent(cordova.getContext(), LocationBGGoogleService.class));
+            LocationBackgroundServiceUtil.mTimer.cancel();
+            LocationBackgroundServiceUtil.wakelock.release();
         } else if (action.equals("isRunning")) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("enabled", true);

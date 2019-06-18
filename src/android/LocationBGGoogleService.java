@@ -32,9 +32,6 @@ public class LocationBGGoogleService extends Service implements LocationListener
     LocationManager locationManager;
     Location location;
     private Handler mHandler = new Handler();
-    private Timer mTimer = null;
-
-    PowerManager.WakeLock wakelock;
 
     public LocationBGGoogleService() {
 
@@ -49,12 +46,12 @@ public class LocationBGGoogleService extends Service implements LocationListener
     public void onCreate() {
         super.onCreate();
 
-        mTimer = new Timer();
-        mTimer.scheduleAtFixedRate(new TimerTaskToGetLocation(), 5, LocationBackgroundServiceUtil.Interval);
+        LocationBackgroundServiceUtil.mTimer = new Timer();
+        LocationBackgroundServiceUtil.mTimer.scheduleAtFixedRate(new TimerTaskToGetLocation(), 5, LocationBackgroundServiceUtil.Interval);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getCanonicalName());
-        wakelock.acquire();
+        LocationBackgroundServiceUtil.wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getCanonicalName());
+        LocationBackgroundServiceUtil.wakelock.acquire();
     }
 
     @Override
@@ -78,7 +75,7 @@ public class LocationBGGoogleService extends Service implements LocationListener
     }
 
     private void getLocation() {
-        wakelock.acquire();
+        LocationBackgroundServiceUtil.wakelock.acquire();
         locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
         isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnable = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -86,7 +83,7 @@ public class LocationBGGoogleService extends Service implements LocationListener
             if (!isGPSEnable && !isNetworkEnable) {
                 LocationBackgroundServiceUtil.IsEnabled = false;
                 LocationBackgroundServiceUtil.callbackContext.error("GPS Location not enabled from phone.");
-                mTimer.cancel();
+                LocationBackgroundServiceUtil.mTimer.cancel();
             } else {
                 if (isNetworkEnable) {
                     location = null;

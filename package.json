@@ -1,7 +1,7 @@
 {
     "name": "cordova-plugin-locationbgservice",
     "description": "Location tracker background service",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "repository": {
         "type": "git",
         "url": "https://github.com/dkrockcom/cordova-plugin-locationbgservice"
